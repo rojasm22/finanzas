@@ -1389,7 +1389,7 @@ if 'analyzer' in st.session_state:
     # ORGANIZACIÓN DE GRÁFICOS CON EL SELECTBOX
     selected_tab = st.selectbox(
         "Selecciona una sección de análisis:",
-        ["Índice VW vs Benchmark", "Herfindahl-Hirschman", "Sectores", "Quantstats","Frontera Eficiente","Modelo de Factores"]
+        ["Índice VW vs Benchmark", "Herfindahl-Hirschman", "Sectores", "Quantstats","Frontera Eficiente","FFC - CAPM"]
     )
 
     if selected_tab == "Índice VW vs Benchmark":
@@ -1443,7 +1443,7 @@ if 'analyzer' in st.session_state:
 
 
 
-    elif selected_tab == "Modelo de Factores":
+    elif selected_tab == "FFC - CAPM":
         st.header("Factores Fama-French")
         analyzer.descargar_factores_fama_french()  # Esto llena self.fama
         analyzer.unir_factores_y_retornos()
