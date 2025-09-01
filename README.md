@@ -47,11 +47,8 @@ A continuación, se presentan los principales pasos del análisis y sus resultad
 
 ### Índice VW vs Benchmark
 
-En primer lugar, se calcula el **Valor de Mercado (MVE)**:
-
-$$
-\text{MVE}_{jt} = \frac{P_{jt}}{\dot{N}_j}
-$$
+En primer lugar, se calcula:
+$MVE_{jt} = P_{jt} /cdot N_{j}$
 
 
 
