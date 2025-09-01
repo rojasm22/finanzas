@@ -17,9 +17,9 @@ MVE_{jt} = P_{jt} \cdot N_j
 $$
 
 donde:  
-- \(MVE_{jt}\) representa la capitalización de mercado de la empresa \(j\) en el período \(t\).  
-- \(P_{jt}\) es el precio ajustado de la acción \(j\) en el período \(t\).  
-- \(N_j\) es la cantidad de acciones en circulación.
+- $MVE_{jt}$ representa la capitalización de mercado de la empresa j en el período t.  
+- $P_{jt}$ es el precio ajustado de la acción j en el período t.  
+- $N_j$ es la cantidad de acciones en circulación.
 
 ---
 
@@ -40,3 +40,6 @@ Finalmente, el **índice value-weighted (VW)** se calcula como el producto acumu
 $$
 vw_t = \kappa \prod_{\tau=1}^{t} (1 + r_{m\tau})
 $$
+
+![Comparación del S&P500 con el índice ponderado por capitalización de mercado](imagenes/1.png)
+
