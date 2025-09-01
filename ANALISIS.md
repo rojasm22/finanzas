@@ -86,7 +86,7 @@ Se observa la evolución diferenciada de los sectores económicos desde 1998, de
  ![Composición portafolio](imagenes/7.png)
 
 Este gráfico muestra cómo ha evolucionado la composición sectorial del portafolio.
- Un patrón notable es el crecimiento significativo del sector Tecnología, especialmente a partir de 2010, tomando más participación en años recientes. Por el contrario, el sector  Materiales Básicos (azul claro) ha mantenido una participación más estabñe y Energía (rosado) ha disminuido su participación en años recientes.
+ Un patrón notable es el crecimiento significativo del sector Tecnología, especialmente a partir de 2010, tomando más participación en años recientes. Por el contrario, el sector  Materiales Básicos (azul claro) ha mantenido una participación más estable y Energía (rosado) ha disminuido su participación en años recientes.
 
 
 ---
@@ -130,8 +130,10 @@ Volatilidad: 0.04%
 
 Se obtienen los pesos de la cartera normal "g" y la cartera autofinanciada "h".
 El spanning de carteras indica que la combinación de dos carteras de la frontera eficiente también está en la frontera eficiente.
-$w = g + \miu _{w}$
+$w = g + \mu _{w}$
 
+
+---
 
 ## CAPM y FFC
 
@@ -165,7 +167,7 @@ Finalmente, se selecciona la **combinación de factores que minimiza el criterio
 
 - Cartera MOM, (momentum), donde se compra la cartera W con el 30% de las
  empresas que tuvieron el rendimiento más alto, menos una cartera l con el 30% de
- las empresas que tuvieron los rendimientos más bajos. Tiene un rendimiento ˜zmom
+ las empresas que tuvieron los rendimientos más bajos. Tiene un rendimiento zmom
 
 
 
@@ -175,11 +177,9 @@ Finalmente, se selecciona la **combinación de factores que minimiza el criterio
 
 Se considera la regresión lineal propuesta por el modelo de Markowitz (1952):
 
-$$
-z_{jt} = \alpha_j + \beta_j z_{mt} + \varepsilon_j
-$$
+$z_{jt} = \alpha_j + \beta_j z_{mt} + \varepsilon_j $
 donde:  
-- $z_{jt}$es el rendimiento en exceso del sector j en el momento t.  
+- $z_{jt}$ es el rendimiento en exceso del sector j en el momento t.  
 - $\alpha_j$ representa el rendimiento del sector j no predicho; para que se cumpla el CAPM de Sharpe, este debe ser cero o no significativo estadísticamente.  
 
 Además, los $\beta_j$ indican la variación de los activos con respecto al mercado y se calculan mediante:
@@ -190,6 +190,6 @@ $$
 
 
 - $\beta$ > 1, esto indica que estos sectores varían en la misma dirección del proxy del mercado.
-- $\beta $ =1 , esto indica que estos sectores varían con el mercado
+- $\beta$ =1 , esto indica que estos sectores varían con el mercado
 - $\beta$ <  1, esto indica que estos sectores varían en dirección contraria del proxy del mercado.
 
