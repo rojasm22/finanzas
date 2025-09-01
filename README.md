@@ -35,20 +35,8 @@ git clone https://github.com/rojasm22/finanzas.git
 cd finanzas
 ```
  
-## Construcción y Análisis
 
-Para este análisis se utilizaron precios ajustados de Yahoo Finance correspondientes a los siguientes tickers: 
 
-**CTVA,VMC,DD,NUE,PPG,DASH,RBLX,EA,LYV,TKO,CMG,ROST,F,YUM,EBAY,MNST,KMB,KR,TGT,SYY,EOG,MPC,PSX,OXY,VLO,PNC,COIN,BK,TRV,HOOD,COR,BDX,EW,CAH,A,EMR,CSX,FDX,URI,CMI,SPG,PSA,CCI,AVB,IRM,MSI,NET,FICO,TTD,HUBS,D,EXC,ED,NRG,AWK**.
-
-Utilizando el **S&P 500 (^GSPC)** como benchmark de referencia.  
-
-A continuación, se presentan los principales pasos del análisis y sus resultados visuales:
-
-### Índice VW vs Benchmark
-
-En primer lugar, se calcula:
-$MVE_{jt} = P_{jt} /cdot N_{j}$
 
 
 
