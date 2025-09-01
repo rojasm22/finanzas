@@ -118,6 +118,8 @@ Inicialmente, el índice de Sharpe tuvo un valor bajo, incluso negativo, durante
 --- 
 
 ## Frontera Eficiente 
+  ![MVEF](imagenes/13.png)
+
 ### Cartera de Mínima Varianza
 Se genera la frontera eficiente de Markowitz utilizando los sectores del portafolio.
 Se obtiene la cartera de mínima varianza:
@@ -128,7 +130,7 @@ Volatilidad: 0.04%
 
 Se obtienen los pesos de la cartera normal "g" y la cartera autofinanciada "h".
 El spanning de carteras indica que la combinación de dos carteras de la frontera eficiente también está en la frontera eficiente.
-$w = g + \miu_{w}$
+$w = g + \miu _{w}$
 
 
 ## CAPM y FFC
@@ -149,6 +151,26 @@ Cabe resaltar que, aunque la constante no resulte significativa, nunca se excluy
 Finalmente, se selecciona la **combinación de factores que minimiza el criterio de Akaike (AIC)** como la especificación final del modelo.
 
 
+
+- Cartera de mercado menos una tasa libre de riesgo, con rendimiento en exceso de zmt
+
+- Cartera SMB (small minus big), donde compra una sub-cartera S de empresas pequeñas menos una sub-cartera B de empresas grandes con un costo neto de cero. El punto de corte es la mediana de empresas. Tiene un rendimiento zst
+
+ - Cartera HML (high minus low). Se ordenan las empresas de mayor a menor de
+ acuerdo a la razón de valor en libros entre valor de mercado (Book to Market o
+ B/M). Se forma una cartera autoőnanciada donde se compra una cartera H del 30%
+ de empresas con la razón B/M más alta (llamados ’value stocks’), y se le resta una
+ cartera L con el 30% de empresas con el B/M más bajo (llamados ’growth stocks’).
+ Tiene un rendimiento zvt
+
+- Cartera MOM, (momentum), donde se compra la cartera W con el 30% de las
+ empresas que tuvieron el rendimiento más alto, menos una cartera l con el 30% de
+ las empresas que tuvieron los rendimientos más bajos. Tiene un rendimiento ˜zmom
+
+
+
+
+
 ## CAPM
 
 Se considera la regresión lineal propuesta por el modelo de Markowitz (1952):
@@ -166,4 +188,8 @@ $$
 \beta_j = \frac{\text{cov}(r_m, r_j)}{\text{var}(r_m)}
 $$
 
+
+- $\beta$ > 1, esto indica que estos sectores varían en la misma dirección del proxy del mercado.
+- $\beta $ =1 , esto indica que estos sectores varían con el mercado
+- $\beta$ <  1, esto indica que estos sectores varían en dirección contraria del proxy del mercado.
 
