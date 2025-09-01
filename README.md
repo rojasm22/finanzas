@@ -11,7 +11,7 @@ Puedes acceder a la aplicación en Streamlit aquí: [Ver aplicación](https://ec
 
 - Ingresar tickers de acciones y un benchmark.
 - Construcción de un portafolio con los tickers introducidos.
-' Comparación contra Benchmark.
+- Comparación contra Benchmark.
 - Análisis sectorial del portafolio.
 - Visualizar gráficos de rendimiento y riesgo.
 - Construcción de la Frontera Eficiente de Markowitz.
@@ -37,7 +37,9 @@ cd finanzas
  
 
 
+## Construcción y Análisis
 
+Para más detalles sobre cómo se calculan las métricas financieras, los pasos del análisis y los gráficos, consulta el archivo [ANALISIS.md](ANALISIS.md).
 
 
 
