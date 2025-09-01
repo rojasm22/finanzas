@@ -10,7 +10,7 @@ El análisis comprende desde 01/1998 - 12/2024
 ---
 
 ## Índice VW vs Benchmark
-
+En línea con Cantillo, Miguel (2025) Principios de Economía Financiera. Universidad de Costa Rica:
 En primer lugar, se calcula la **capitalización de mercado (MVE)** de cada empresa \(j\) en el período \(t\):
 
 $$
@@ -89,6 +89,8 @@ Este gráfico muestra cómo ha evolucionado la composición sectorial del portaf
  Un patrón notable es el crecimiento significativo del sector Tecnología, especialmente a partir de 2010, tomando más participación en años recientes. Por el contrario, el sector  Materiales Básicos (azul claro) ha mantenido una participación más estabñe y Energía (rosado) ha disminuido su participación en años recientes.
 
 
+---
+
  ## Quantstats
 Para más información sobre QuantStats: https://github.com/ranaroussi/quantstats
 
@@ -113,7 +115,55 @@ Inicialmente, el índice de Sharpe tuvo un valor bajo, incluso negativo, durante
  Para el portafolio se obtiene una razón de sharpe de 3.083 y para el S&P 500 de 2.364.
  Este resultado resalta los beneficios de la diversificación, ya que el índice value weighted incluye empresas de diversos tamaños y sectores. En consecuencia, se posiciona como la opción más eficiente en términos de rentabilidad ajustada por riesgo
 
+--- 
 
- ## Frontera Eficiente
+## Frontera Eficiente 
+### Cartera de Mínima Varianza
+Se genera la frontera eficiente de Markowitz utilizando los sectores del portafolio.
+Se obtiene la cartera de mínima varianza:
+Rendimiento: 0.01%
+Volatilidad: 0.04%
 
- 
+### Spanning de Carteras
+
+Se obtienen los pesos de la cartera normal "g" y la cartera autofinanciada "h".
+El spanning de carteras indica que la combinación de dos carteras de la frontera eficiente también está en la frontera eficiente.
+$w = g + \miu_{w}$
+
+
+## CAPM y FFC
+
+## FFC
+Primero, se calcularon los rendimientos en exceso para cada sector, restándole la tasa libre de riesgo del datased de Fama-French
+
+Segundo, se tomaron los datos y se corrieron las regresiones de la especificación FFC:
+
+$$
+z_{jt} = a_j + \beta_{jm} z_{mt} + \beta_{js} z_{st} + \beta_{jv} z_{vt} + \beta_{jmom} z_{momt} + \varepsilon_{jt}
+$$
+
+El procedimiento de la especificación FFC consiste en correr inicialmente la regresión con todos los regresores y, posteriormente, eliminar iterativamente aquellos \beta no significativos con el menor estadístico t, repitiendo este proceso hasta que todos los coeficientes restantes sean significativos.  
+
+Cabe resaltar que, aunque la constante no resulte significativa, nunca se excluye de la regresión.  
+
+Finalmente, se selecciona la **combinación de factores que minimiza el criterio de Akaike (AIC)** como la especificación final del modelo.
+
+
+## CAPM
+
+Se considera la regresión lineal propuesta por el modelo de Markowitz (1952):
+
+$$
+z_{jt} = \alpha_j + \beta_j z_{mt} + \varepsilon_j
+$$
+donde:  
+- $z_{jt}$es el rendimiento en exceso del sector j en el momento t.  
+- $\alpha_j$ representa el rendimiento del sector j no predicho; para que se cumpla el CAPM de Sharpe, este debe ser cero o no significativo estadísticamente.  
+
+Además, los $\beta_j$ indican la variación de los activos con respecto al mercado y se calculan mediante:
+
+$$
+\beta_j = \frac{\text{cov}(r_m, r_j)}{\text{var}(r_m)}
+$$
+
+
