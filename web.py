@@ -736,7 +736,7 @@ class PortafolioAnalyzer:
             'media_mvp': self.media_mvp,
             'volatilidad_mvp': self.volatilidad_mvp,
             'mu_sectores': self.mu.flatten(),
-            'sigma_sectores': sigma_individual,
+            'sigma_sectores': sigma_individual.flatten(),
             'sectores': retornos.columns.tolist()
         }
         
