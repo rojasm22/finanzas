@@ -115,7 +115,7 @@ def aplicar_estilo_liquid():
 
 
 # URLs de Fama-French
-plt.style.use('./nord-deep.mplstyle')
+plt.style.use('https://github.com/kimichenn/nord-deep-mpl-stylesheet/raw/main/nord-deep.mplstyle')
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def _descargar_info_ticker(ticker):
