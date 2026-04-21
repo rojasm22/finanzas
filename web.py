@@ -15,8 +15,25 @@ import os
 import itertools
 from itertools import combinations
 import requests, io, zipfile
+import time
 # URLs de Fama-French
-plt.style.use('https://github.com/kimichenn/nord-deep-mpl-stylesheet/raw/main/nord-deep.mplstyle')
+plt.style.use('./nord-deep.mplstyle')
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _descargar_info_ticker(ticker):
+    import time
+    for intento in range(3):
+        try:
+            info = yf.Ticker(ticker).info or {}
+            if info:
+                return info
+        except Exception:
+            pass
+        time.sleep(0.5 * (intento + 1))
+    return {}
+
+
+
 
 # --- Clase principal ---
 class PortafolioAnalyzer:
@@ -105,31 +122,36 @@ class PortafolioAnalyzer:
     # --- Descarga de todos los datos ---
     def descargar_datos(self):
         total_tickers = self.tickers + [self.benchmark]
-        data = yf.download(total_tickers, start=self.start_date, end=self.end_date, auto_adjust=True, interval='1mo')
+        data = yf.download(total_tickers, start=self.start_date, end=self.end_date,
+                        auto_adjust=True, interval='1mo', progress=False)
         if len(total_tickers) == 1:
             self.precios_ajustados = pd.DataFrame({total_tickers[0]: data['Close']})
         else:
             self.precios_ajustados = data['Close']
 
-        shares_data = {}
-        sectores_data = {}
+        shares_data, sectores_data = {}, {}
+        fallidos = []
+
         for ticker in self.tickers:
-            try:
-                ticker_info = yf.Ticker(ticker)
-                # Acciones en mercado de cada ticker
-                shares = ticker_info.info.get('sharesOutstanding', 1)
-                shares_data[ticker] = shares if shares and shares > 0 else 1
+            info = _descargar_info_ticker(ticker)
 
-                # Sectores de cada acción
-                sector = ticker_info.info.get('sector')
-                sectores_data[ticker] = sector
+            shares = info.get('sharesOutstanding') or 1
+            shares_data[ticker] = shares if shares and shares > 0 else 1
 
-            except Exception:
-                shares_data[ticker] = 1
-                sectores_data[ticker] = 'Desconocido'
+            sector = info.get('sector') or info.get('sectorKey') or info.get('industry')
+            if not sector or not isinstance(sector, str) or not sector.strip():
+                sector = 'Desconocido'
+                fallidos.append(ticker)
+            sectores_data[ticker] = sector
+
         self.shares_outstanding = pd.Series(shares_data)
         self.sectores = pd.Series(sectores_data)
+
+        if fallidos:
+            st.warning(f"No se pudo obtener sector de: {', '.join(fallidos)}")
         
+
+
 
 
 
@@ -963,7 +985,8 @@ class PortafolioAnalyzer:
     def graficos_apilados(self):
         st.subheader("Evolución de Pesos por Sector")
         if self.vw is None or self.sectores is None:
-            st.warning("Error: No se puede generar el gr")
+            st.warning("Error: No se puede generar el gráfico")
+            return
 
         ##PESOS DE CADA SECTOR
         pesos_por_sector = pd.DataFrame(index=self.vw.index)
@@ -979,9 +1002,9 @@ class PortafolioAnalyzer:
         fig, ax = plt.subplots(figsize=(20, 10))
         colors = sns.color_palette("Paired", len(sectores_ordenados))
         ax.stackplot(
-            pesos_por_sector.index,
-            pesos_por_sector.values.T,
-            labels=pesos_por_sector.columns,
+            peso_por_sector.index,
+            peso_por_sector.values.T,
+            labels=peso_por_sector.columns,
             colors=colors
         )
         ax.set_title('Composición del Portafolio por Sector a lo largo del Tiempo', fontsize=20)
@@ -991,6 +1014,7 @@ class PortafolioAnalyzer:
         ax.tick_params(axis='x', rotation=45)
         fig.tight_layout()
         st.pyplot(fig, use_container_width=True)
+        plt.close(fig)
 
 
 
