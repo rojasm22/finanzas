@@ -16,6 +16,104 @@ import itertools
 from itertools import combinations
 import requests, io, zipfile
 import time
+
+
+
+
+def aplicar_estilo_liquid():
+    st.markdown("""
+    <style>
+    /* Fondo con gradiente animado */
+    .stApp {
+        background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        background-attachment: fixed;
+    }
+
+    /* Efecto glass en contenedores principales */
+    [data-testid="stVerticalBlock"] > [style*="flex-direction"] > [data-testid="stVerticalBlock"],
+    [data-testid="stMetric"],
+    .stDataFrame,
+    [data-testid="stExpander"] {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botones estilo liquid */
+    .stButton > button {
+        background: rgba(124, 159, 242, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(124, 159, 242, 0.3);
+        border-radius: 12px;
+        color: #E8ECF4;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 10px 24px;
+    }
+    .stButton > button:hover {
+        background: rgba(124, 159, 242, 0.25);
+        border-color: rgba(124, 159, 242, 0.5);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(124, 159, 242, 0.3);
+    }
+
+    /* Inputs y selectores */
+    .stTextInput input, .stTextArea textarea, .stSelectbox > div > div {
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 10px !important;
+        color: #E8ECF4 !important;
+    }
+
+    /* Métricas */
+    [data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(15px);
+        border-radius: 14px;
+        padding: 20px;
+    }
+    [data-testid="stMetricValue"] {
+        color: #7C9FF2;
+        font-size: 2rem !important;
+    }
+
+    /* Títulos con peso moderno */
+    h1, h2, h3 {
+        font-weight: 600 !important;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #E8ECF4 0%, #7C9FF2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Tabs / radio pills */
+    .stRadio > div {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+    }
+
+    /* Scrollbar custom */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(124, 159, 242, 0.3);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(124, 159, 242, 0.5); }
+    </style>
+    """, unsafe_allow_html=True)
+
+
+
+
 # URLs de Fama-French
 plt.style.use('./nord-deep.mplstyle')
 
@@ -1284,10 +1382,24 @@ class PortafolioAnalyzer:
 
 
 
-
+plt.rcParams.update({
+    'figure.facecolor': 'none',
+    'axes.facecolor': 'none',
+    'savefig.facecolor': 'none',
+    'axes.edgecolor': '#E8ECF4',
+    'axes.labelcolor': '#E8ECF4',
+    'xtick.color': '#E8ECF4',
+    'ytick.color': '#E8ECF4',
+    'text.color': '#E8ECF4',
+    'axes.grid': True,
+    'grid.alpha': 0.15,
+    'grid.color': '#E8ECF4',
+})
 
 
 # --- INTERFAZ STREAMLIT ---
+st.set_page_config(page_title="Análisis de Portafolio", layout="wide")
+aplicar_estilo_liquid()
 st.title("Análisis de Portafolio")
 
 # Selección de tickers
